@@ -23,6 +23,7 @@ public class BankManagementSystem {
 	private static JTextField email;
 	private static JTextField accnum;
 	private static JTextField phnumber;
+	private static JTextField acctype;
 	private JTable table;
 
 	static int num;
@@ -31,7 +32,7 @@ public class BankManagementSystem {
 	static Customer [] myList=new Customer[999]; ;
 	DefaultTableModel dtm;
 	String header[]=new String[] {"firstName","lastName","age","gender","email","accNO","PhoneNO","accType"};
-	private static JTextField acctype;
+	
 	
 	/**
 	 * Launch the application.
@@ -72,6 +73,17 @@ public class BankManagementSystem {
 			dtm.addRow(obj);
 		}		
 	}
+	
+	public void refresh() {
+		firstname.setText("");
+		lastname.setText("");
+		age.setText("");
+		gender.setText("");
+		email.setText("");
+		accnum.setText("");
+		phnumber.setText("");
+		acctype.setText("");
+	}
 
 	/**
 	 * Create the application.
@@ -90,22 +102,30 @@ public class BankManagementSystem {
 		acctype.setBounds(122, 273, 86, 20);
 		frame.getContentPane().add(acctype);
 		
-		JButton btnRefresh = new JButton("refresh");
-		btnRefresh.addActionListener(new ActionListener() {
+		JButton btnSearch = new JButton("search");
+		btnSearch.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				firstname.setText("");
-				lastname.setText("");
-				age.setText("");
-				gender.setText("");
-				email.setText("");
-				accnum.setText("");
-				phnumber.setText("");
-				acctype.setText("");
-				
+				String input = JOptionPane.showInputDialog(null,"Search Account No: ");
+				for(int i=0;i<num;i++) {
+					if(myList[i].getAccNum().equals(input)) {
+						JOptionPane.showMessageDialog(btnSearch, "Found", "Search Information",2);
+						firstname.setText(myList[i].getFirstName());
+						lastname.setText(myList[i].getLastName());
+						age.setText(myList[i].getAge());
+						gender.setText(myList[i].getGender());
+						email.setText(myList[i].getEmail());
+						accnum.setText(myList[i].getAccNum());
+						phnumber.setText(myList[i].getPhoneNum());
+						acctype.setText(myList[i].getAccType());
+						
+						return;
+					}
+				}
+				JOptionPane.showMessageDialog(btnSearch, "Not Found");
 			}
 		});
-		btnRefresh.setBounds(119, 338, 89, 23);
-		frame.getContentPane().add(btnRefresh);
+		btnSearch.setBounds(122, 338, 89, 23);
+		frame.getContentPane().add(btnSearch);
 	}
 
 	/**
@@ -194,7 +214,9 @@ public class BankManagementSystem {
 					 myList[num]=new Customer (firstname.getText(),lastname.getText(),age.getText(),gender.getText(),email.getText(),accnum.getText(),phnumber.getText(),acctype.getText());
 					 num++;
 					 }
+				JOptionPane.showMessageDialog(null, "Added Successfully");
 				displayStudentDetails();
+				refresh();
 					} //end addLast() method
 			
 		});
@@ -204,15 +226,19 @@ public class BankManagementSystem {
 		JButton btnEdit = new JButton("edit");
 		btnEdit.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-			myList[row].setFirstName(firstname.getText());
-			myList[row].setLastName(lastname.getText());
-			myList[row].setAge(age.getText());
-			myList[row].setGender(gender.getText());
-			myList[row].setEmail(email.getText());
-			myList[row].setAccNum(accnum.getText());
-			myList[row].setPhoneNum(phnumber.getText());
-			myList[row].setAccType(acctype.getText());
-			displayStudentDetails();
+				int choice=JOptionPane.showConfirmDialog(null, "Update this data ?","Update",JOptionPane.YES_NO_OPTION);
+				if(choice==0) {
+					myList[row].setFirstName(firstname.getText());
+					myList[row].setLastName(lastname.getText());
+					myList[row].setAge(age.getText());
+					myList[row].setGender(gender.getText());
+					myList[row].setEmail(email.getText());
+					myList[row].setAccNum(accnum.getText());
+					myList[row].setPhoneNum(phnumber.getText());
+					myList[row].setAccType(acctype.getText());
+					displayStudentDetails();
+					refresh();
+				}
 			}
 		});
 		btnEdit.setBounds(119, 304, 89, 23);
@@ -221,6 +247,7 @@ public class BankManagementSystem {
 		JButton btnDelete = new JButton("delete");
 		btnDelete.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				if(num!=0) {
 				int choice=JOptionPane.showConfirmDialog(null, "Delete this data ?","Delete",JOptionPane.YES_NO_OPTION);
 				if(choice==0) {
 					dtm.removeRow(row);
@@ -232,8 +259,11 @@ public class BankManagementSystem {
 						}
 					num--;   
 					displayStudentDetails();
+					refresh();
+					return;
 				}
-				
+				}
+				JOptionPane.showMessageDialog(btnDelete, "No Data");
 			}
 		});
 		btnDelete.setBounds(10, 338, 89, 23);
