@@ -68,11 +68,27 @@ public class BankManagementSystem {
 	
 	public void displayStudentDetails() {
 		dtm.setRowCount(0);
+		insertionSort ();
 		for(int i=0;i<num;i++) {
 			Object[]obj= {myList[i].getFirstName(),myList[i].getLastName(),myList[i].getAge(),myList[i].getGender(),myList[i].getEmail(),myList[i].getAccNum(),myList[i].getPhoneNum(),myList[i].getAccType()};
 			dtm.addRow(obj);
-		}		
+			
+		}
 	}
+	
+	public void insertionSort ()
+	   {
+		for (int x=1; x < num; x++)
+	       {
+	         Customer tempList = myList[x];
+	         int y=x;
+	         for (;y>0 && Integer.parseInt(tempList.getAccNum())<Integer.parseInt(myList[y-1].getAccNum());y--) 
+	        	 myList[y]=myList[y-1];  
+	         myList[y]=tempList;
+	         
+	         }
+	       }
+	
 	
 	public void refresh() {
 		firstname.setText("");
@@ -119,8 +135,9 @@ public class BankManagementSystem {
 						acctype.setText(myList[i].getAccType());
 						
 						return;
+					}	
 					}
-				}
+				
 				JOptionPane.showMessageDialog(btnSearch, "Not Found");
 			}
 		});
