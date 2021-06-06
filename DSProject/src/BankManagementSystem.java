@@ -122,24 +122,30 @@ public class BankManagementSystem {
 		btnSearch.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				String input = JOptionPane.showInputDialog(null,"Search Account No: ");
-				for(int i=0;i<num;i++) {
-					if(myList[i].getAccNum().equals(input)) {
-						JOptionPane.showMessageDialog(btnSearch, "Found", "Search Information",2);
-						firstname.setText(myList[i].getFirstName());
-						lastname.setText(myList[i].getLastName());
-						age.setText(myList[i].getAge());
-						gender.setText(myList[i].getGender());
-						email.setText(myList[i].getEmail());
-						accnum.setText(myList[i].getAccNum());
-						phnumber.setText(myList[i].getPhoneNum());
-						acctype.setText(myList[i].getAccType());
-						
-						return;
-					}	
-					}
-				
-				JOptionPane.showMessageDialog(btnSearch, "Not Found");
+				 int first = 0, last = num - 1;
+			        while (first <= last) {
+			            int mid = first + (last - first) / 2;
+			            if (myList[mid].getAccNum().equals(input)) {
+			            	JOptionPane.showMessageDialog(null, "Found", "Search Information",2);
+							firstname.setText(myList[mid].getFirstName());
+							lastname.setText(myList[mid].getLastName());
+							age.setText(myList[mid].getAge());
+							gender.setText(myList[mid].getGender());
+							email.setText(myList[mid].getEmail());
+							accnum.setText(myList[mid].getAccNum());
+							phnumber.setText(myList[mid].getPhoneNum());
+							acctype.setText(myList[mid].getAccType()); 
+							return;
+			            }
+			            else if (myList[mid].getAccNum().compareTo(input)<0) {
+			                first = mid + 1;
+			            }
+			            else
+			                last = mid - 1;
+			        }  
+			        JOptionPane.showMessageDialog(null, "Not Found");
 			}
+			
 		});
 		btnSearch.setBounds(122, 338, 89, 23);
 		frame.getContentPane().add(btnSearch);
@@ -280,7 +286,7 @@ public class BankManagementSystem {
 					return;
 				}
 				}
-				JOptionPane.showMessageDialog(btnDelete, "No Data");
+				JOptionPane.showMessageDialog(null, "No Data");
 			}
 		});
 		btnDelete.setBounds(10, 338, 89, 23);

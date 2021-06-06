@@ -60,6 +60,23 @@ public class ArrayList {
 		  System.out.println("Phone Number ="+myList[index].getPhoneNum());
 		  System.out.println("Account Type ="+myList[index].getAccType());
 	}
+	public void sequantialSearch() {
+		/*for(int i=0;i<num;i++) {
+			if(myList[i].getAccNum().equals(input)) {
+			JOptionPane.showMessageDialog(btnSearch, "Found", "Search Information",2);
+			firstname.setText(myList[i].getFirstName());
+			lastname.setText(myList[i].getLastName());
+			age.setText(myList[i].getAge());
+			gender.setText(myList[i].getGender());
+			email.setText(myList[i].getEmail());
+			accnum.setText(myList[i].getAccNum());
+			phnumber.setText(myList[i].getPhoneNum());
+			acctype.setText(myList[i].getAccType());
+	
+			return;
+		}	
+		}*/
+	}
 	
 	public void edit(int index,String newFirstName, String newLastName, String newAge, String newGender, String newEmail, String newAccNum, String newPhoneNum, String newAccType) {
 		if (isEmpty( ))                                                             	
