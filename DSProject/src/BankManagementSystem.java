@@ -15,6 +15,7 @@ import java.awt.event.MouseEvent;
 import java.awt.Color;
 import javax.swing.border.MatteBorder;
 import java.awt.Font;
+import javax.swing.ImageIcon;
 
 public class BankManagementSystem {
 
@@ -158,6 +159,16 @@ public class BankManagementSystem {
 		});
 		btnSearch.setBounds(154, 354, 89, 23);
 		frmBankingManagementSystem.getContentPane().add(btnSearch);
+		
+		JButton btnNewButton = new JButton("");
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				refresh();
+			}
+		});
+		btnNewButton.setIcon(new ImageIcon("C:\\Users\\Ivy Ng\\Pictures\\CaptureFSDF.PNG"));
+		btnNewButton.setBounds(253, 29, 19, 20);
+		frmBankingManagementSystem.getContentPane().add(btnNewButton);
 	}
 
 	/**
