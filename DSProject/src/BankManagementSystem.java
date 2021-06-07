@@ -12,10 +12,13 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.Color;
+import javax.swing.border.MatteBorder;
+import java.awt.Font;
 
 public class BankManagementSystem {
 
-	private JFrame frame;
+	private JFrame frmBankingManagementSystem;
 	private static JTextField firstname;
 	private static JTextField lastname;
 	private static JTextField age;
@@ -31,7 +34,7 @@ public class BankManagementSystem {
 
 	static Customer [] myList=new Customer[999]; ;
 	DefaultTableModel dtm;
-	String header[]=new String[] {"firstName","lastName","age","gender","email","accNO","PhoneNO","accType"};
+	String header[]=new String[] {"FirstName","LastName","Age","Gender","Email","AccNO.","PhoneNO.","AccType"};
 	
 	
 	/**
@@ -42,7 +45,7 @@ public class BankManagementSystem {
 			public void run() {
 				try {
 					BankManagementSystem window = new BankManagementSystem();
-					window.frame.setVisible(true);
+					window.frmBankingManagementSystem.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -109,16 +112,22 @@ public class BankManagementSystem {
 		dtm=new DefaultTableModel(header,0);
 		table.setModel(dtm);
 		
-		JLabel lblAcctype = new JLabel("accType");
-		lblAcctype.setBounds(39, 272, 73, 14);
-		frame.getContentPane().add(lblAcctype);
+		JLabel lblAcctype = new JLabel("Acc Type");
+		lblAcctype.setFont(new Font("Poor Richard", Font.BOLD, 12));
+		lblAcctype.setBounds(39, 275, 73, 14);
+		frmBankingManagementSystem.getContentPane().add(lblAcctype);
 		
 		acctype = new JTextField();
+		acctype.setFont(new Font("Adobe Fan Heiti Std B", Font.BOLD, 12));
+		acctype.setForeground(new Color(255, 255, 255));
+		acctype.setBackground(new Color(221, 160, 221));
 		acctype.setColumns(10);
-		acctype.setBounds(122, 273, 86, 20);
-		frame.getContentPane().add(acctype);
+		acctype.setBounds(122, 274, 121, 20);
+		frmBankingManagementSystem.getContentPane().add(acctype);
 		
-		JButton btnSearch = new JButton("search");
+		JButton btnSearch = new JButton("SEARCH");
+		btnSearch.setFont(new Font("Letter Gothic Std", Font.BOLD, 15));
+		btnSearch.setBackground(new Color(255, 160, 122));
 		btnSearch.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				String input = JOptionPane.showInputDialog(null,"Search Account No: ");
@@ -147,83 +156,117 @@ public class BankManagementSystem {
 			}
 			
 		});
-		btnSearch.setBounds(122, 338, 89, 23);
-		frame.getContentPane().add(btnSearch);
+		btnSearch.setBounds(154, 354, 89, 23);
+		frmBankingManagementSystem.getContentPane().add(btnSearch);
 	}
 
 	/**
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
-		frame = new JFrame();
-		frame.setBounds(100, 100, 846, 446);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.getContentPane().setLayout(null);
+		frmBankingManagementSystem = new JFrame();
+		frmBankingManagementSystem.setForeground(new Color(255, 255, 255));
+		frmBankingManagementSystem.setBackground(new Color(255, 255, 255));
+		frmBankingManagementSystem.getContentPane().setBackground(new Color(255, 192, 203));
+		frmBankingManagementSystem.setTitle("Banking Management System");
+		frmBankingManagementSystem.setBounds(100, 100, 938, 438);
+		frmBankingManagementSystem.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frmBankingManagementSystem.getContentPane().setLayout(null);
 		
 		JLabel lblFirstName = new JLabel("First Name");
-		lblFirstName.setBounds(39, 32, 73, 14);
-		frame.getContentPane().add(lblFirstName);
+		lblFirstName.setFont(new Font("Poor Richard", Font.BOLD, 12));
+		lblFirstName.setBounds(39, 30, 73, 14);
+		frmBankingManagementSystem.getContentPane().add(lblFirstName);
 		
 		JLabel lblLastName = new JLabel("Last Name");
-		lblLastName.setBounds(39, 64, 73, 14);
-		frame.getContentPane().add(lblLastName);
+		lblLastName.setFont(new Font("Poor Richard", Font.BOLD, 12));
+		lblLastName.setBounds(39, 65, 73, 14);
+		frmBankingManagementSystem.getContentPane().add(lblLastName);
 		
-		JLabel lblAge = new JLabel("age");
-		lblAge.setBounds(39, 98, 73, 14);
-		frame.getContentPane().add(lblAge);
+		JLabel lblAge = new JLabel("Age");
+		lblAge.setFont(new Font("Poor Richard", Font.BOLD, 12));
+		lblAge.setBounds(39, 99, 73, 14);
+		frmBankingManagementSystem.getContentPane().add(lblAge);
 		
-		JLabel lblGender = new JLabel("gender");
-		lblGender.setBounds(39, 123, 73, 14);
-		frame.getContentPane().add(lblGender);
+		JLabel lblGender = new JLabel("Gender");
+		lblGender.setFont(new Font("Poor Richard", Font.BOLD, 12));
+		lblGender.setBounds(39, 135, 73, 14);
+		frmBankingManagementSystem.getContentPane().add(lblGender);
 		
-		JLabel lblEmail = new JLabel("email");
-		lblEmail.setBounds(39, 157, 73, 14);
-		frame.getContentPane().add(lblEmail);
+		JLabel lblEmail = new JLabel("Email");
+		lblEmail.setFont(new Font("Poor Richard", Font.BOLD, 12));
+		lblEmail.setBounds(39, 170, 73, 14);
+		frmBankingManagementSystem.getContentPane().add(lblEmail);
 		
-		JLabel lblAccnum = new JLabel("accNum");
-		lblAccnum.setBounds(39, 195, 73, 14);
-		frame.getContentPane().add(lblAccnum);
+		JLabel lblAccnum = new JLabel("Acc NO.");
+		lblAccnum.setFont(new Font("Poor Richard", Font.BOLD, 12));
+		lblAccnum.setBounds(39, 205, 73, 14);
+		frmBankingManagementSystem.getContentPane().add(lblAccnum);
 		
-		JLabel lblPhonenum = new JLabel("phoneNum");
-		lblPhonenum.setBounds(39, 233, 73, 14);
-		frame.getContentPane().add(lblPhonenum);
+		JLabel lblPhonenum = new JLabel("Phone NO.");
+		lblPhonenum.setFont(new Font("Poor Richard", Font.BOLD, 12));
+		lblPhonenum.setBounds(39, 240, 73, 14);
+		frmBankingManagementSystem.getContentPane().add(lblPhonenum);
 		
 		firstname = new JTextField();
-		firstname.setBounds(122, 29, 86, 20);
-		frame.getContentPane().add(firstname);
+		firstname.setFont(new Font("Adobe Fan Heiti Std B", Font.BOLD, 12));
+		firstname.setForeground(new Color(255, 255, 255));
+		firstname.setBackground(new Color(221, 160, 221));
+		firstname.setBounds(122, 29, 121, 20);
+		frmBankingManagementSystem.getContentPane().add(firstname);
 		firstname.setColumns(10);
 		
 		lastname = new JTextField();
+		lastname.setFont(new Font("Adobe Fan Heiti Std B", Font.BOLD, 12));
+		lastname.setForeground(new Color(255, 255, 255));
+		lastname.setBackground(new Color(221, 160, 221));
 		lastname.setColumns(10);
-		lastname.setBounds(122, 61, 86, 20);
-		frame.getContentPane().add(lastname);
+		lastname.setBounds(122, 64, 121, 20);
+		frmBankingManagementSystem.getContentPane().add(lastname);
 		
 		age = new JTextField();
+		age.setFont(new Font("Adobe Fan Heiti Std B", Font.BOLD, 12));
+		age.setForeground(new Color(255, 255, 255));
+		age.setBackground(new Color(221, 160, 221));
 		age.setColumns(10);
-		age.setBounds(122, 95, 86, 20);
-		frame.getContentPane().add(age);
+		age.setBounds(122, 99, 121, 20);
+		frmBankingManagementSystem.getContentPane().add(age);
 		
 		gender = new JTextField();
+		gender.setFont(new Font("Adobe Fan Heiti Std B", Font.BOLD, 12));
+		gender.setForeground(new Color(255, 255, 255));
+		gender.setBackground(new Color(221, 160, 221));
 		gender.setColumns(10);
-		gender.setBounds(122, 130, 86, 20);
-		frame.getContentPane().add(gender);
+		gender.setBounds(122, 134, 121, 20);
+		frmBankingManagementSystem.getContentPane().add(gender);
 		
 		email = new JTextField();
+		email.setFont(new Font("Adobe Fan Heiti Std B", Font.BOLD, 12));
+		email.setForeground(new Color(255, 255, 255));
+		email.setBackground(new Color(221, 160, 221));
 		email.setColumns(10);
-		email.setBounds(122, 154, 86, 20);
-		frame.getContentPane().add(email);
+		email.setBounds(122, 169, 121, 20);
+		frmBankingManagementSystem.getContentPane().add(email);
 		
 		accnum = new JTextField();
+		accnum.setFont(new Font("Adobe Fan Heiti Std B", Font.BOLD, 12));
+		accnum.setForeground(new Color(255, 255, 255));
+		accnum.setBackground(new Color(221, 160, 221));
 		accnum.setColumns(10);
-		accnum.setBounds(122, 192, 86, 20);
-		frame.getContentPane().add(accnum);
+		accnum.setBounds(122, 204, 121, 20);
+		frmBankingManagementSystem.getContentPane().add(accnum);
 		
 		phnumber = new JTextField();
+		phnumber.setFont(new Font("Adobe Fan Heiti Std B", Font.BOLD, 12));
+		phnumber.setForeground(new Color(255, 255, 255));
+		phnumber.setBackground(new Color(221, 160, 221));
 		phnumber.setColumns(10);
-		phnumber.setBounds(122, 230, 86, 20);
-		frame.getContentPane().add(phnumber);
+		phnumber.setBounds(122, 239, 121, 20);
+		frmBankingManagementSystem.getContentPane().add(phnumber);
 		
-		JButton btnAdd = new JButton("add");
+		JButton btnAdd = new JButton("ADD");
+		btnAdd.setFont(new Font("Letter Gothic Std", Font.BOLD, 15));
+		btnAdd.setBackground(new Color(127, 255, 212));
 		btnAdd.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				if (isEmpty( )) {
@@ -243,10 +286,12 @@ public class BankManagementSystem {
 					} //end addLast() method
 			
 		});
-		btnAdd.setBounds(10, 304, 89, 23);
-		frame.getContentPane().add(btnAdd);
+		btnAdd.setBounds(39, 320, 89, 23);
+		frmBankingManagementSystem.getContentPane().add(btnAdd);
 		
-		JButton btnEdit = new JButton("edit");
+		JButton btnEdit = new JButton("EDIT");
+		btnEdit.setFont(new Font("Letter Gothic Std", Font.BOLD, 15));
+		btnEdit.setBackground(new Color(144, 238, 144));
 		btnEdit.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				int choice=JOptionPane.showConfirmDialog(null, "Update this data ?","Update",JOptionPane.YES_NO_OPTION);
@@ -264,10 +309,12 @@ public class BankManagementSystem {
 				}
 			}
 		});
-		btnEdit.setBounds(119, 304, 89, 23);
-		frame.getContentPane().add(btnEdit);
+		btnEdit.setBounds(154, 320, 89, 23);
+		frmBankingManagementSystem.getContentPane().add(btnEdit);
 		
-		JButton btnDelete = new JButton("delete");
+		JButton btnDelete = new JButton("DELETE");
+		btnDelete.setFont(new Font("Letter Gothic Std", Font.BOLD, 15));
+		btnDelete.setBackground(new Color(240, 230, 140));
 		btnDelete.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if(num!=0) {
@@ -289,14 +336,16 @@ public class BankManagementSystem {
 				JOptionPane.showMessageDialog(null, "No Data");
 			}
 		});
-		btnDelete.setBounds(10, 338, 89, 23);
-		frame.getContentPane().add(btnDelete);
+		btnDelete.setBounds(39, 354, 89, 23);
+		frmBankingManagementSystem.getContentPane().add(btnDelete);
 		
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(252, 32, 557, 340);
-		frame.getContentPane().add(scrollPane);
+		scrollPane.setBounds(274, 25, 625, 340);
+		frmBankingManagementSystem.getContentPane().add(scrollPane);
 		
 		table = new JTable();
+		table.setBorder(null);
+		table.setBackground(new Color(127, 255, 212));
 		table.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
